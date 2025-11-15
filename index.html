@@ -1,11 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impostor del Fútbol ⚽</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300,400,700&display=swap" rel="stylesheet">
+    
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300,400,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dark: #1a1a2e;
@@ -95,74 +95,28 @@
             margin-top: 10px;
         }
 
-        #playersContainer { 
-            margin: 20px 0; 
-            max-height: 250px;
-            overflow-y: auto;
-            padding-right: 10px; /* Para el scrollbar */
-        }
-        #playersContainer::-webkit-scrollbar {
-            width: 8px;
-        }
-        #playersContainer::-webkit-scrollbar-track {
-            background: var(--bg-medium);
-            border-radius: 10px;
-        }
-        #playersContainer::-webkit-scrollbar-thumb {
-            background: var(--bg-light);
-            border-radius: 10px;
-        }
-        #playersContainer::-webkit-scrollbar-thumb:hover {
-            background: #0b2a4e;
-        }
-
-
-        .player-input { 
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            background-color: var(--input-bg);
-            border-radius: 8px;
-            padding: 8px 12px;
-            border: 1px solid var(--border-color);
-        }
-        .player-input label {
-            min-width: 80px;
-            font-size: 0.95em;
-            color: var(--text-light);
-        }
-        .player-input input[type="text"] {
-            background: transparent;
-            border: none;
-            color: var(--text-light);
-            padding: 5px;
-            flex-grow: 1;
-            font-size: 1em;
-            outline: none;
-        }
-        .player-input input[type="text"]::placeholder {
-            color: #a0a0a0;
-        }
-
         .input-group {
-            margin: 20px 0;
+            margin: 25px 0;
             text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 1.05em;
+            font-size: 1.1em;
             color: var(--text-light);
+            margin-right: 15px;
         }
         .input-group input[type="number"] {
             background-color: var(--input-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             color: var(--text-light);
-            padding: 8px 12px;
+            padding: 10px 14px;
             width: 80px;
-            font-size: 1em;
+            font-size: 1.1em;
             text-align: center;
+            outline: none;
         }
 
         button {
@@ -183,14 +137,8 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
         }
-        button#removePlayerBtn {
-            background-color: #6c757d; /* Gris para eliminar */
-        }
-        button#removePlayerBtn:hover {
-            background-color: #5a6268;
-        }
         button#restartBtn {
-            background-color: var(--bg-light); /* Un color diferente para reiniciar */
+            background-color: var(--bg-light); 
         }
         button#restartBtn:hover {
             background-color: #0c2b53;
@@ -199,7 +147,7 @@
         .button-row {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Para que los botones se envuelvan en pantallas pequeñas */
+            flex-wrap: wrap; 
             margin-top: 15px;
         }
 
@@ -272,39 +220,31 @@
                 margin: 5px auto;
                 display: block;
             }
-            .player-input {
+            .input-group {
                 flex-direction: column;
                 align-items: flex-start;
-                padding: 10px;
             }
-            .player-input label {
-                margin-bottom: 5px;
+            .input-group label {
+                margin-bottom: 10px;
             }
-            .player-input input[type="text"] {
+            .input-group input[type="number"] {
                 width: 100%;
+                box-sizing: border-box; /* Para que el padding no lo haga más ancho */
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div id="setupScreen" class="screen" style="display: block;">
+        
+<div id="setupScreen" class="screen" style="display: block;">
             <h1>Impostor del Fútbol ⚽</h1>
-            <div id="playersContainer">
-                <div class="player-input">
-                    <label for="player1">Jugador 1:</label>
-                    <input type="text" id="player1" placeholder="Nombre del jugador">
-                </div>
-                <div class="player-input">
-                    <label for="player2">Jugador 2:</label>
-                    <input type="text" id="player2" placeholder="Nombre del jugador">
-                </div>
-            </div>
-            <div class="button-row">
-                <button id="addPlayerBtn">➕ Añadir Jugador</button>
-                <button id="removePlayerBtn">➖ Quitar Jugador</button>
-            </div>
             
+            <div class="input-group">
+                <label for="playerCount">Número de Jugadores:</label>
+                <input type="number" id="playerCount" min="2" max="10" value="3">
+            </div>
+
             <div class="input-group">
                 <label for="impostorCount">Número de Impostores:</label>
                 <input type="number" id="impostorCount" min="1" value="1">
@@ -313,20 +253,23 @@
             <button id="startBtn">Comenzar Juego</button>
         </div>
 
-        <div id="roleScreen" class="screen">
+        
+<div id="roleScreen" class="screen">
             <h2 id="currentPlayer"></h2>
             <div id="currentRole"></div>
             <button id="continueBtn">Entendido</button>
         </div>
 
-        <div id="waitingScreen" class="screen">
+        
+<div id="waitingScreen" class="screen">
             <h2>Pasa el dispositivo al siguiente jugador</h2>
             <div class="loader"></div>
             <p style="margin-top: 30px;">Cuando estén listos, presiona:</p>
             <button id="nextPlayerBtn">Mostrar siguiente rol</button>
         </div>
 
-        <div id="endScreen" class="screen">
+        
+<div id="endScreen" class="screen">
             <h2>¡Es hora de la votación!</h2>
             <p>Discutan quién creen que es el impostor. ¡Buena suerte!</p>
             <div id="impostorReveal"></div>
@@ -551,14 +494,13 @@
         const roleScreen = document.getElementById("roleScreen");
         const waitingScreen = document.getElementById("waitingScreen");
         const endScreen = document.getElementById("endScreen");
-        const playersContainer = document.getElementById("playersContainer");
-
+        
         const startBtn = document.getElementById("startBtn");
         const continueBtn = document.getElementById("continueBtn");
         const nextPlayerBtn = document.getElementById("nextPlayerBtn");
         const restartBtn = document.getElementById("restartBtn");
-        const addPlayerBtn = document.getElementById("addPlayerBtn");
-        const removePlayerBtn = document.getElementById("removePlayerBtn");
+        
+        const playerCountInput = document.getElementById("playerCount");
         const impostorCountInput = document.getElementById("impostorCount");
 
         const currentPlayerEl = document.getElementById("currentPlayer");
@@ -570,88 +512,61 @@
         continueBtn.addEventListener("click", showWaitingScreen);
         nextPlayerBtn.addEventListener("click", showNextPlayer);
         restartBtn.addEventListener("click", restartGame);
-        addPlayerBtn.addEventListener("click", addPlayerInput);
-        removePlayerBtn.addEventListener("click", removePlayerInput);
+        
+        playerCountInput.addEventListener("change", validateImpostorCount);
         impostorCountInput.addEventListener("change", validateImpostorCount);
 
-        // Inicializar con 2 jugadores por defecto
+        // Inicializar validación al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
-            validateImpostorCount(); // Para ajustar el max al inicio
+            validateImpostorCount();
         });
 
 
-        // Función para agregar un nuevo campo de jugador
-        function addPlayerInput() {
-            const playerCount = playersContainer.children.length;
-            if (playerCount >= 10) {
-                alert("Máximo 10 jugadores permitidos.");
-                return;
-            }
-            
-            const playerId = `player${playerCount + 1}`;
-            const div = document.createElement('div');
-            div.className = 'player-input';
-            div.innerHTML = `
-                <label for="${playerId}">Jugador ${playerCount + 1}:</label>
-                <input type="text" id="${playerId}" placeholder="Nombre del jugador">
-            `;
-            playersContainer.appendChild(div);
-            
-            validateImpostorCount();
-        }
-
-        // Función para eliminar el último campo de jugador
-        function removePlayerInput() {
-            if (playersContainer.children.length > 2) {
-                playersContainer.removeChild(playersContainer.lastChild);
-                validateImpostorCount();
-            } else {
-                alert("Debe haber al menos 2 jugadores.");
-            }
-        }
-
         // Validar que el número de impostores no exceda el número de jugadores
         function validateImpostorCount() {
-            const playerCount = playersContainer.children.length;
-            const maxImpostors = Math.max(1, playerCount - 1);
+            let playerCount = parseInt(playerCountInput.value);
             
-            if (parseInt(impostorCountInput.value) > maxImpostors) {
+            // Forzar límites de jugadores (2-10)
+            if (isNaN(playerCount) || playerCount < 2) {
+                playerCount = 2;
+                playerCountInput.value = "2";
+            }
+            if (playerCount > 10) {
+                playerCount = 10;
+                playerCountInput.value = "10";
+            }
+
+            const maxImpostors = Math.max(1, playerCount - 1);
+            let impostorCount = parseInt(impostorCountInput.value);
+
+            // Forzar límites de impostores (1 a max)
+            if (isNaN(impostorCount) || impostorCount < 1) {
+                impostorCount = 1;
+                impostorCountInput.value = "1";
+            }
+            if (impostorCount > maxImpostors) {
+                impostorCount = maxImpostors;
                 impostorCountInput.value = maxImpostors;
             }
+            
             impostorCountInput.max = maxImpostors;
         }
 
         // Función para iniciar el juego
         function startGame() {
-            players = [];
-            const inputs = playersContainer.querySelectorAll('input[type="text"]');
-            let allInputsFilled = true;
-            inputs.forEach(input => {
-                const name = input.value.trim();
-                if (name === "") {
-                    allInputsFilled = false;
-                }
-                players.push(name);
-            });
-
-            if (!allInputsFilled) {
-                alert("Por favor, introduce un nombre para todos los jugadores.");
-                return;
-            }
-
-            if (players.length < 2) {
-                alert("Debe haber al menos 2 jugadores.");
-                return;
-            }
-
-            let impostorCount = parseInt(impostorCountInput.value);
-            const maxImpostors = players.length - 1;
+            // Asegurarse de que los valores están validados antes de empezar
+            validateImpostorCount(); 
             
-            if (impostorCount < 1 || impostorCount > maxImpostors) {
-                alert(`Debe haber entre 1 y ${maxImpostors} impostores.`);
-                return;
+            const playerCount = parseInt(playerCountInput.value);
+            const impostorCount = parseInt(impostorCountInput.value);
+
+            // Crear array genérico de jugadores
+            players = [];
+            for (let i = 1; i <= playerCount; i++) {
+                players.push(`Jugador ${i}`);
             }
 
+            // Elegir impostores al azar
             impostorIndexes = [];
             const availableIndexes = [...Array(players.length).keys()];
             
@@ -671,7 +586,6 @@
 
         // Mostrar rol del jugador actual
         function showPlayerRole() {
-            // Ocultar todas las pantallas y luego mostrar la actual
             [setupScreen, waitingScreen, endScreen].forEach(screen => screen.style.display = 'none');
             roleScreen.style.display = "block";
 
@@ -710,7 +624,7 @@
 
             const impostorNames = impostorIndexes.map(index => players[index]);
             
-            impostorRevealEl.innerHTML = `<p>Ahora, discutan y descubran los impostores.</p>`;
+            impostorRevealEl.innerHTML = `<p>¡Discutan y vean si descubrieron a todos los impostores!</p>`;
         }
 
         // Reiniciar el juego
@@ -718,21 +632,11 @@
             currentPlayerIndex = 0;
             impostorIndexes = [];
             
-            // Ocultar todas las pantallas y mostrar la de configuración
             [roleScreen, waitingScreen, endScreen].forEach(screen => screen.style.display = 'none');
             setupScreen.style.display = "block";
 
-            // Limpiar nombres de jugadores para la próxima ronda
-            const inputs = playersContainer.querySelectorAll('input[type="text"]');
-            inputs.forEach((input, index) => {
-                input.value = "";
-                if (index > 1) { // Remover inputs extra si no son los iniciales
-                    playersContainer.removeChild(input.closest('.player-input'));
-                }
-            });
-            // Resetear el contador de impostores si es necesario
-            impostorCountInput.value = 1; 
-            validateImpostorCount(); // Asegurarse de que los límites estén bien.
+            // Validar los contadores en caso de que el usuario los haya tocado
+            validateImpostorCount();
         }
     </script>
 </body>
