@@ -1,74 +1,209 @@
+const footballers = [
+    // === Estrellas Mundiales (Actuales y Muy Recientes) ===
+    "Lionel Messi",
+    "Cristiano Ronaldo",
+    "Neymar Jr",
+    "Kylian Mbappé",
+    "Erling Haaland",
+    "Robert Lewandowski",
+    "Kevin De Bruyne",
+    "Mohamed Salah",
+    "Karim Benzema",
+    "Luka Modrić",
+    "Vinícius Júnior",
+    "Harry Kane",
+    "Antoine Griezmann",
+    "Heung-min Son (Sonny)",
+    "Jude Bellingham",
+    "Federico Valverde",
 
-            // Lista de futbolistas
-    const footballers = [
-        // Jugadores actuales top (ampliado)
-        "Lionel Messi", "Cristiano Ronaldo", "Neymar Jr", 
-        "Kylian Mbappé", "Robert Lewandowski", "Kevin De Bruyne",
-        "Mohamed Salah", "Erling Haaland", "Karim Benzema",
-        "Luka Modrić", "Virgil van Dijk", "Sadio Mané",
-        "Harry Kane", "Son Heung-min", "Jude Bellingham",
-        "Vinícius Júnior", "Rodri", "Bernardo Silva",
-        "Toni Kroos", "Thibaut Courtois", "Ederson",
-        "Alisson Becker", "Rúben Dias", "Phil Foden",
-        "Bukayo Saka", "Jamal Musiala", "Pedri",
-        "Gavi", "Federico Valverde", "Lautaro Martínez",
-        "Romelu Lukaku", "Victor Osimhen", "Khvicha Kvaratskhelia",
-        
-        // Jugadores de la Liga Argentina (actuales y recientes)
-        "Enzo Fernández", "Julian Álvarez", "Exequiel Palacios",
-        "Giovani Lo Celso", "Papu Gómez", "Paulo Dybala",
-        "Leandro Paredes", "Nicolás Otamendi", "Lisandro Martínez",
-        "Emiliano Martínez", "Cristian Romero", "Nicolás Tagliafico",
-        "Marcos Acuña", "Ángel Di María", "Gonzalo Montiel",
-        "Germán Pezzella", "Guido Rodríguez", "Thiago Almada",
-        "Ezequiel Barco", "Alan Varela", "Facundo Medina",
-        "Lucas Martínez Quarta", "Lucas Ocampos", "Joelinton",
-        
-        // Leyendas del fútbol (históricos)
-        "Diego Maradona", "Pelé", "Johan Cruyff",
-        "Alfredo Di Stéfano", "Ferenc Puskás", "Franz Beckenbauer",
-        "Gerd Müller", "Zinedine Zidane", "Ronaldo Nazário",
-        "Ronaldinho", "Andrés Iniesta", "Xavi Hernández",
-        "Thierry Henry", "Paolo Maldini", "Franco Baresi",
-        "Roberto Baggio", "Gabriel Batistuta", "Romário",
-        "Hristo Stoichkov", "George Best", "Eusébio",
-        "Marco van Basten", "Ruud Gullit", "Michel Platini",
-        "Lothar Matthäus", "Carlos Valderrama", "Alessandro Del Piero",
-        "Francesco Totti", "Raúl González", "Iker Casillas",
-        "Ryan Giggs", "Paul Scholes", "Steven Gerrard",
-        "Frank Lampard", "Didier Drogba", "Samuel Eto'o",
-        
-        // Leyendas argentinas
-        "Juan Román Riquelme", "Gabriel Omar Batistuta",
-        "Mario Kempes", "Daniel Passarella", "Oscar Ruggeri",
-        "Jorge Valdano", "Claudio Caniggia", "Fernando Redondo",
-        "Ariel Ortega", "Sergio Agüero", "Carlos Tevez",
-        "Javier Zanetti", "Juan Sebastián Verón", "Esteban Cambiasso",
-        "Walter Samuel", "Hernán Crespo", "Diego Simeone",
-        "Ubaldo Fillol", "Amadeo Carrizo", "René Houseman",
-        
-        // Porteros destacados
-        "Manuel Neuer", "Gianluigi Buffon", "Oliver Kahn",
-        "Peter Schmeichel", "Edwin van der Sar", "Iker Casillas",
-        "Dino Zoff", "Gordon Banks", "Lev Yashin",
-        
-        // Defensores legendarios
-        "Fabio Cannavaro", "Alessandro Nesta", "Jaap Stam",
-        "Marcel Desailly", "Lilian Thuram", "Roberto Carlos",
-        "Cafu", "Dani Alves", "Sergio Ramos",
-        
-        // Más jugadores actuales destacados
-        "Frenkie de Jong", "Matthijs de Ligt", "Joshua Kimmich",
-        "Serge Gnabry", "Leroy Sané", "Kingsley Coman",
-        "Marquinhos", "Neymar", "Casemiro",
-        "Antoine Griezmann", "Ousmane Dembélé", "Achraf Hakimi",
-        "João Félix", "Rafael Leão", "Dušan Vlahović",
-        "Christopher Nkunku", "Declan Rice", "Jack Grealish",
-        "Mason Mount", "Reece James", "Trent Alexander-Arnold",
-        "Andrew Robertson", "Virgil van Dijk", "Darwin Núñez",
-        "Cody Gakpo", "Marcus Rashford", "Bruno Fernandes",
-        "Martin Ødegaard", "Gabriel Jesus", "William Saliba"
-    ];
+    // === Leyendas Mundiales (Iconos 80s en adelante) ===
+    "Pelé",
+    "Diego Maradona",
+    "Johan Cruyff",
+    "Zinedine Zidane",
+    "Ronaldo Nazário",
+    "Ronaldinho",
+    "Andrés Iniesta",
+    "Xavi Hernández",
+    "Thierry Henry",
+    "Paolo Maldini",
+    "Roberto Baggio",
+    "Romário",
+    "Marco van Basten",
+    "Michel Platini",
+    "Lothar Matthäus",
+    "Roberto Carlos",
+    "Cafu",
+    "Sergio Ramos",
+    "Steven Gerrard",
+    "Frank Lampard",
+    "Didier Drogba",
+    "Samuel Eto'o",
+    "Dennis Bergkamp",
+    "Andriy Shevchenko",
+
+    // === Porteros Legendarios (80s en adelante) ===
+    "Gianluigi Buffon",
+    "Iker Casillas",
+    "Oliver Kahn",
+    "Manuel Neuer",
+
+    // === Selección Argentina (Actuales y Conocidos) ===
+    "Ángel Di María (Fideo)",
+    "Emiliano Martínez (Dibu)",
+    "Julian Álvarez (La Araña)",
+    "Enzo Fernández",
+    "Paulo Dybala (La Joya)",
+    "Lautaro Martínez (El Toro)",
+    "Lisandro Martínez (Licha)",
+    "Cristian Romero (Cuti)",
+    "Leandro Paredes",
+    "Rodrigo De Paul (Motorcito)",
+    "Alexis Mac Allister",
+    "Nicolás Otamendi (General)",
+
+    // === Leyendas Argentinas (80s en adelante) ===
+    "Gabriel Batistuta (Batigol)",
+    "Juan Román Riquelme",
+    "Sergio Agüero (Kun)",
+    "Carlos Tevez (El Apache)",
+    "Hernán Crespo (Valdanito)",
+    "Claudio Caniggia (El Pájaro)",
+    "Ariel Ortega (El Burrito)",
+    "Javier Zanetti (Pupi)",
+    "Juan Sebastián Verón (La Brujita)",
+    "Fernando Redondo (El Príncipe)",
+    "Oscar Ruggeri (El Cabezón)",
+    "Diego Simeone (Cholo)",
+    "Gonzalo Higuaín (Pipa)",
+    "Javier Pastore (El Flaco)",
+    "Ezequiel Lavezzi (Pocho)",
+    "Javier Mascherano (El Jefecito)",
+    "Walter Samuel (El Muro)",
+    "Juan Pablo Sorín (Juampi)",
+
+    // === Ídolos de Clubes (80s en adelante) ===
+
+    // Boca Juniors
+    "Martín Palermo (El Titán)",
+    "Guillermo Barros Schelotto (El Melli)",
+    "Roberto Abbondanzieri (Pato)",
+    "Carlos Navarro Montoya (El Mono)",
+    "Hugo Ibarra (Negro)",
+    "Gary Medel (El Pitbull)",
+    "Pablo Pérez",
+    "Santiago Silva (El Tanque)",
+    "Oscar Córdoba",
+    "Marcelo Delgado (Chelo)",
+    "Mauricio Serna (Chicho)",
+    "Juan Ramírez",
+    "Cristian Pavón (Kichan)",
+    "Darío Benedetto (Pipa)",
+    "Nahitan Nández",
+    "Exequiel Zeballos (Changuito)",
+    "Miguel Merentiel (La Bestia)",
+    "Edinson Cavani (El Matador)",
+    "Frank Fabra",
+    "Jorge Bermúdez (El Patrón)",
+    "Sebastián Battaglia (Seba)",
+    "Rodolfo Arruabarrena (El Vasco)",
+    "Antonio Barijho (Chipi)",
+    "Rodrigo Palacio (La Joya)",
+    "Rolando Schiavi (El Flaco)",
+    "Cristian Medina",
+    "Marcos Rojo",
+    "Sergio Romero (Chiquito)",
+    "Ezequiel Fernández (Equi)",
+    "Luis Advíncula (Rayo)", // [NUEVO]
+    "Clemente Rodríguez", // [NUEVO]
+
+    // River Plate
+    "Enzo Francescoli (El Príncipe)",
+    "Juan Fernando Quintero (Juanfer)",
+    "Franco Armani",
+    "Radamel Falcao (El Tigre)",
+    "Alexis Sánchez (Niño Maravilla)",
+    "Marcelo Gallardo (El Muñeco)",
+    "Pablo Aimar (El Payaso)",
+  * "Javier Saviola (El Conejito)",
+    "Marcelo Salas (El Matador)",
+    "Ramiro Funes Mori (El Melli)",
+    "Leonardo Ponzio (El León)",
+    "Leonardo Astrada (El Jefe)",
+    "Norberto Alonso (Beto)",
+    "Fernando Cavenaghi (Cavegol)",
+    "Matías Almeyda (Pelado)",
+    "Enzo Pérez",
+    "Ramón Díaz (El Pelado)",
+    "Germán Burgos (El Mono)",
+    "Ignacio Fernández (Nacho)",
+    "Miguel Borja (El Colibrí)",
+    "Claudio Echeverri (Diablito)",
+    "Nacho Scocco", // [NUEVO]
+
+    // Estudiantes de La Plata
+    "José Luis Brown (Tata)",
+    "Mauro Boselli",
+    "Leandro Desábato (Chavo)",
+    "Mariano Andújar",
+    "Alejandro Sabella (Pachorra)",
+    "Ernesto Farías (Tecla)",
+    "Benjamín Rollheiser",
+    "Guido Carrillo",
+    "Gerónimo Rulli",
+    "José Sosa (El Principito)",
+    "Jonatan Schunke (El Vikingo)",
+    "Santiago Ascacíbar (Rusito)",
+    "Edwin Cetré",
+    "Gastón Fernández (La Gata)",
+    "Marcos Rojo", // (Ídolo acá también)
+    "José Luis Calderón (Caldera)",
+    "Mariano Pavone (El Tanque)",
+    "Leandro Benítez (Chino)",
+
+    // Gimnasia y Esgrima La Plata
+    "Pedro Troglio",
+    "Ignacio Fernández (Nacho)", // (Ídolo acá también)
+    "Maximiliano Meza",
+    "Fernando Monetti (Mono)",
+    "Facundo Oreja",
+    "Cristian Tarragona",
+    "Benjamín Domínguez",
+    "Brahian Alemán (Oveja)",
+    "Franco Niell (El Enano)",
+    "Fabián Rinaudo (Fito)",
+    "Lucas Licht (Bochi)",
+    "Sebastián Romero (Chirola)",
+  
+    // Racing Club [NUEVO]
+    "Diego Milito (El Príncipe)", // [NUEVO]
+    "Lisandro López (Licha)", // [NUEVO]
+    "Gustavo Bou (La Pantera)", // [NUEVO]
+    "Turco Garcia (falopa)", // [NUEVO]
+    "Adrián Maravilla Martínez", // [NUEVO - Actual]
+
+    // Independiente [NUEVO]
+    "Ricardo Bochini (El Bocha)", // [NUEVO]
+    "Daniel Montenegro (Rolfi)", // [NUEVO]
+    "Gabriel Milito (Gabi)", // [NUEVO]
+    "Federico Mancuello", // [NUEVO - Actual]
+
+    // San Lorenzo [NUEVO]
+    "Leandro Romagnoli (Pipi)", // [NUEVO]
+    "Néstor Ortigoza (Gordo)", // [NUEVO]
+    "Sebastián Torrico (Cóndor)", // [NUEVO]
+    "Adam Bareiro", // [NUEVO - Actual]
+    
+    // Vélez Sarsfield [NUEVO]
+    "José Luis Chilavert (Chila)", // [NUEVO]
+    "Omar Asad (El Turco)", // [NUEVO]
+    "Fabián Cubero (Poroto)", // [NUEVO]
+
+   "Pablo Vegetti","Illolaiy (vsc)","Fede Slezack (vsc)","Colocca (vsc)","Pulga Rodriguez","Bichi Fuertes"
+
+                
+];
 
         // Variables del juego
         let players = [];
