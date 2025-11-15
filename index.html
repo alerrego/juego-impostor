@@ -1,105 +1,337 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de Impostores de Fútbol</title>
+    <title>Impostor del Fútbol ⚽</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300,400,700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-dark: #1a1a2e;
+            --bg-medium: #16213e;
+            --bg-light: #0f3460;
+            --text-light: #e0e0e0;
+            --accent-green: #28a745;
+            --accent-green-hover: #218838;
+            --accent-red: #dc3545;
+            --accent-red-hover: #c82333;
+            --border-color: #0d203a;
+            --input-bg: #223c6d;
+            --button-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            --card-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+            overflow-x: hidden;
         }
-        .screen { 
-            display: none; 
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-top: 20px;
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            background-color: var(--bg-medium);
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            padding: 25px;
+            transition: all 0.4s ease-in-out;
+            border: 1px solid var(--border-color);
         }
+
+        .screen {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1, h2 {
+            color: var(--text-light);
+            margin-bottom: 25px;
+            font-weight: 700;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 2.2em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
         .impostor { 
-            color: red; 
-            font-weight: bold; 
-            font-size: 1.2em;
+            color: var(--accent-red); 
+            font-weight: 700; 
+            font-size: 1.4em;
         }
         .footballer { 
-            color: green;
-            font-size: 1.2em;
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 1.4em;
         }
+        .footballer strong {
+            display: block;
+            font-size: 1.6em;
+            margin-top: 10px;
+        }
+
         #playersContainer { 
-            margin: 15px 0; 
+            margin: 20px 0; 
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 10px; /* Para el scrollbar */
         }
+        #playersContainer::-webkit-scrollbar {
+            width: 8px;
+        }
+        #playersContainer::-webkit-scrollbar-track {
+            background: var(--bg-medium);
+            border-radius: 10px;
+        }
+        #playersContainer::-webkit-scrollbar-thumb {
+            background: var(--bg-light);
+            border-radius: 10px;
+        }
+        #playersContainer::-webkit-scrollbar-thumb:hover {
+            background: #0b2a4e;
+        }
+
+
         .player-input { 
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
+            background-color: var(--input-bg);
+            border-radius: 8px;
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
         }
         .player-input label {
-            min-width: 100px;
+            min-width: 80px;
+            font-size: 0.95em;
+            color: var(--text-light);
         }
+        .player-input input[type="text"] {
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            padding: 5px;
+            flex-grow: 1;
+            font-size: 1em;
+            outline: none;
+        }
+        .player-input input[type="text"]::placeholder {
+            color: #a0a0a0;
+        }
+
+        .input-group {
+            margin: 20px 0;
+            text-align: left;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+            color: var(--text-light);
+        }
+        .input-group input[type="number"] {
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            padding: 8px 12px;
+            width: 80px;
+            font-size: 1em;
+            text-align: center;
+        }
+
         button {
-            padding: 8px 15px;
-            background-color: #4CAF50;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            font-weight: 700;
+            background-color: var(--accent-green);
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
-            margin: 5px;
+            margin: 8px;
+            transition: all 0.3s ease;
+            box-shadow: var(--button-shadow);
         }
         button:hover {
-            background-color: #45a049;
+            background-color: var(--accent-green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
         }
-        input[type="text"], input[type="number"] {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            flex-grow: 1;
+        button#removePlayerBtn {
+            background-color: #6c757d; /* Gris para eliminar */
         }
-        h1, h2 {
-            color: #333;
+        button#removePlayerBtn:hover {
+            background-color: #5a6268;
+        }
+        button#restartBtn {
+            background-color: var(--bg-light); /* Un color diferente para reiniciar */
+        }
+        button#restartBtn:hover {
+            background-color: #0c2b53;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Para que los botones se envuelvan en pantallas pequeñas */
+            margin-top: 15px;
+        }
+
+        #currentRole {
+            margin: 30px 0; 
+            min-height: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+        }
+        #currentRole p {
+            font-size: 0.95em;
+            color: #b0b0b0;
+            margin-top: 10px;
+        }
+
+        #waitingScreen h2 {
+            margin-bottom: 20px;
+        }
+        #waitingScreen .loader {
+            border: 6px solid #f3f3f3;
+            border-top: 6px solid var(--accent-green);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 30px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #endScreen #impostorReveal {
+            margin: 30px 0;
+            background-color: var(--bg-light);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        #endScreen #impostorReveal h3 {
+            color: var(--text-light);
+            margin-top: 0;
+            font-size: 1.6em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        #endScreen #impostorReveal p {
+            font-size: 1.05em;
+            margin-bottom: 8px;
+            color: var(--text-light);
+        }
+        #endScreen #impostorReveal strong {
+            color: var(--accent-red);
+        }
+
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8em; }
+            h2 { font-size: 1.5em; }
+            button {
+                width: 90%;
+                margin: 5px auto;
+                display: block;
+            }
+            .player-input {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+            }
+            .player-input label {
+                margin-bottom: 5px;
+            }
+            .player-input input[type="text"] {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="setupScreen" class="screen" style="display: block;">
-        <h1>Juego de Impostores de Fútbol</h1>
-        <div id="playersContainer">
-            <div class="player-input">
-                <label for="player1">Jugador 1:</label>
-                <input type="text" id="player1" placeholder="Nombre del jugador">
+    <div class="container">
+        <div id="setupScreen" class="screen" style="display: block;">
+            <h1>Impostor del Fútbol ⚽</h1>
+            <div id="playersContainer">
+                <div class="player-input">
+                    <label for="player1">Jugador 1:</label>
+                    <input type="text" id="player1" placeholder="Nombre del jugador">
+                </div>
+                <div class="player-input">
+                    <label for="player2">Jugador 2:</label>
+                    <input type="text" id="player2" placeholder="Nombre del jugador">
+                </div>
             </div>
-            <div class="player-input">
-                <label for="player2">Jugador 2:</label>
-                <input type="text" id="player2" placeholder="Nombre del jugador">
+            <div class="button-row">
+                <button id="addPlayerBtn">➕ Añadir Jugador</button>
+                <button id="removePlayerBtn">➖ Quitar Jugador</button>
             </div>
+            
+            <div class="input-group">
+                <label for="impostorCount">Número de Impostores:</label>
+                <input type="number" id="impostorCount" min="1" value="1">
+            </div>
+            
+            <button id="startBtn">Comenzar Juego</button>
         </div>
-        <button id="addPlayerBtn">➕ Agregar Jugador</button>
-        <button id="removePlayerBtn">➖ Eliminar Jugador</button>
-        
-        <div style="margin: 15px 0;">
-            <label for="impostorCount" style="display: block; margin-bottom: 5px;">Número de Impostores:</label>
-            <input type="number" id="impostorCount" min="1" value="1" style="width: 60px;">
+
+        <div id="roleScreen" class="screen">
+            <h2 id="currentPlayer"></h2>
+            <div id="currentRole"></div>
+            <button id="continueBtn">Entendido</button>
         </div>
-        
-        <button id="startBtn">Comenzar Juego</button>
-    </div>
 
-    <div id="roleScreen" class="screen">
-        <h2 id="currentPlayer"></h2>
-        <div id="currentRole" style="margin: 20px 0; min-height: 60px;"></div>
-        <button id="continueBtn">Continuar</button>
-    </div>
+        <div id="waitingScreen" class="screen">
+            <h2>Pasa el dispositivo al siguiente jugador</h2>
+            <div class="loader"></div>
+            <p style="margin-top: 30px;">Cuando estén listos, presiona:</p>
+            <button id="nextPlayerBtn">Mostrar siguiente rol</button>
+        </div>
 
-    <div id="waitingScreen" class="screen">
-        <h2>Pasa el dispositivo al siguiente jugador</h2>
-        <button id="nextPlayerBtn">Mostrar siguiente rol</button>
-    </div>
-
-    <div id="endScreen" class="screen">
-        <h2>¡Juego Terminado!</h2>
-        <div id="impostorReveal" style="margin: 20px 0;"></div>
-        <button id="restartBtn">Jugar de Nuevo</button>
+        <div id="endScreen" class="screen">
+            <h2>¡Es hora de la votación!</h2>
+            <p>Discutan quién creen que es el impostor. ¡Buena suerte!</p>
+            <div id="impostorReveal"></div>
+            <button id="restartBtn">Jugar de Nuevo</button>
+        </div>
     </div>
 
     <script>
@@ -214,7 +446,7 @@
             "Sebastián Battaglia (Seba)",
             "Rodolfo Arruabarrena (El Vasco)",
             "Antonio Barijho (Chipi)",
-            "Rodrigo Palacio (La JoyA)",
+            "Rodrigo Palacio (La Joya)",
             "Rolando Schiavi (El Flaco)",
             "Cristian Medina",
             "Marcos Rojo",
@@ -342,11 +574,17 @@
         removePlayerBtn.addEventListener("click", removePlayerInput);
         impostorCountInput.addEventListener("change", validateImpostorCount);
 
+        // Inicializar con 2 jugadores por defecto
+        document.addEventListener('DOMContentLoaded', () => {
+            validateImpostorCount(); // Para ajustar el max al inicio
+        });
+
+
         // Función para agregar un nuevo campo de jugador
         function addPlayerInput() {
             const playerCount = playersContainer.children.length;
             if (playerCount >= 10) {
-                alert("Máximo 10 jugadores permitidos");
+                alert("Máximo 10 jugadores permitidos.");
                 return;
             }
             
@@ -368,7 +606,7 @@
                 playersContainer.removeChild(playersContainer.lastChild);
                 validateImpostorCount();
             } else {
-                alert("Debe haber al menos 2 jugadores");
+                alert("Debe haber al menos 2 jugadores.");
             }
         }
 
@@ -377,7 +615,7 @@
             const playerCount = playersContainer.children.length;
             const maxImpostors = Math.max(1, playerCount - 1);
             
-            if (impostorCountInput.value > maxImpostors) {
+            if (parseInt(impostorCountInput.value) > maxImpostors) {
                 impostorCountInput.value = maxImpostors;
             }
             impostorCountInput.max = maxImpostors;
@@ -387,13 +625,22 @@
         function startGame() {
             players = [];
             const inputs = playersContainer.querySelectorAll('input[type="text"]');
+            let allInputsFilled = true;
             inputs.forEach(input => {
-                const name = input.value.trim() || `Jugador ${players.length + 1}`;
+                const name = input.value.trim();
+                if (name === "") {
+                    allInputsFilled = false;
+                }
                 players.push(name);
             });
 
+            if (!allInputsFilled) {
+                alert("Por favor, introduce un nombre para todos los jugadores.");
+                return;
+            }
+
             if (players.length < 2) {
-                alert("Debe haber al menos 2 jugadores");
+                alert("Debe haber al menos 2 jugadores.");
                 return;
             }
 
@@ -401,7 +648,7 @@
             const maxImpostors = players.length - 1;
             
             if (impostorCount < 1 || impostorCount > maxImpostors) {
-                alert(`Debe haber entre 1 y ${maxImpostors} impostores`);
+                alert(`Debe haber entre 1 y ${maxImpostors} impostores.`);
                 return;
             }
 
@@ -414,6 +661,9 @@
                 availableIndexes.splice(randomPos, 1);
             }
             
+            // Elegir un nuevo futbolista para la ronda
+            randomFootballer = footballers[Math.floor(Math.random() * footballers.length)];
+
             setupScreen.style.display = "none";
             currentPlayerIndex = 0;
             showPlayerRole();
@@ -421,9 +671,9 @@
 
         // Mostrar rol del jugador actual
         function showPlayerRole() {
+            // Ocultar todas las pantallas y luego mostrar la actual
+            [setupScreen, waitingScreen, endScreen].forEach(screen => screen.style.display = 'none');
             roleScreen.style.display = "block";
-            waitingScreen.style.display = "none";
-            endScreen.style.display = "none";
 
             const player = players[currentPlayerIndex];
             currentPlayerEl.textContent = player;
@@ -432,7 +682,7 @@
                 currentRoleEl.innerHTML = '<span class="impostor">¡Tú eres el IMPOSTOR!</span>' + 
                                           '<p>Tu objetivo es hacer creer que sabes de fútbol sin ser descubierto.</p>';
             } else {
-                currentRoleEl.innerHTML = `<span class="footballer">Tu futbolista es:<br><strong>${randomFootballer}</strong></span>` +
+                currentRoleEl.innerHTML = `<span class="footballer">Tu futbolista es:<strong>${randomFootballer}</strong></span>` +
                                           `<p>Tu objetivo es descubrir quién no conoce realmente de fútbol.</p>`;
             }
         }
@@ -453,30 +703,36 @@
             }
         }
 
-        // Nueva función para mostrar la pantalla final
+        // Función para mostrar la pantalla final
         function showEndScreen() {
-            roleScreen.style.display = "none";
-            waitingScreen.style.display = "none";
+            [setupScreen, roleScreen, waitingScreen].forEach(screen => screen.style.display = 'none');
             endScreen.style.display = "block";
 
             const impostorNames = impostorIndexes.map(index => players[index]);
             
-            impostorRevealEl.innerHTML = `<h3>¡Todos vieron su rol!</h3>` +
-                                         `<p>Es hora de debatir y votar.</p>` +
-                                         `<hr>` +
-                                         `<p style="font-size: 0.9em; color: #555;">(Info para verificar después):</p>` +
-                                         `<p style="font-size: 0.9em; color: #555;">Los impostores eran: <strong>${impostorNames.join(", ")}</strong></p>` +
-                                         `<p style="font-size: 0.9em; color: #555;">El futbolista era: <strong>${randomFootballer}</strong></p>`;
+            impostorRevealEl.innerHTML = `<p>Ahora, discutan y descubran los impostores.</p>`;
         }
-
 
         // Reiniciar el juego
         function restartGame() {
             currentPlayerIndex = 0;
-            setupScreen.style.display = "block";
-            endScreen.style.display = "none"; 
             impostorIndexes = [];
-            randomFootballer = footballers[Math.floor(Math.random() * footballers.length)];
+            
+            // Ocultar todas las pantallas y mostrar la de configuración
+            [roleScreen, waitingScreen, endScreen].forEach(screen => screen.style.display = 'none');
+            setupScreen.style.display = "block";
+
+            // Limpiar nombres de jugadores para la próxima ronda
+            const inputs = playersContainer.querySelectorAll('input[type="text"]');
+            inputs.forEach((input, index) => {
+                input.value = "";
+                if (index > 1) { // Remover inputs extra si no son los iniciales
+                    playersContainer.removeChild(input.closest('.player-input'));
+                }
+            });
+            // Resetear el contador de impostores si es necesario
+            impostorCountInput.value = 1; 
+            validateImpostorCount(); // Asegurarse de que los límites estén bien.
         }
     </script>
 </body>
